@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Carte Boxtal</title>
+  <style>
+    #parcel-point-map {
+      width: 100%;
+      height: 500px; /* La hauteur est obligatoire */
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Carte Boxtal</h1>
+
+  <!-- Le conteneur indispensable -->
+  <div id="parcel-point-map"></div>
+
+  <!-- Librairie IIFE -->
+  <script src="https://maps.boxtal.com/app/v3/assets/dependencies/@boxtal/parcel-point-map/dist/index.global.js"></script>
+
+  <script>
+    window.onload = () => {
+      if (!BoxtalParcelPointMap || !BoxtalParcelPointMap.BoxtalParcelPointMap) {
+        console.error("Librairie Boxtal non chargée.");
+        return;
+      }
+
+      new BoxtalParcelPointMap.BoxtalParcelPointMap({
+        domToLoadMap: '#parcel-point-map',
+        accessToken: 'eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJXRmJYWEV3VFRCX2VfRWFsXzEtdk4zOGc4Qm1ONjZyaUM5dnEtb0pLdWtBIn0.eyJleHAiOjE3NTkyMzc2NDcsImlhdCI6MTc1OTIzNDA0NywianRpIjoiYjJjNmQyNWUtODE5Zi00NzFiLTgxMWUtYWQ3MzZhYjkyYjVkIiwiaXNzIjoiaHR0cHM6Ly9pYW0uYm94dGFsLmNvbS9yZWFsbXMvYWNjb3VudC1hcHAiLCJzdWIiOiJmOmFjY291bnQtYXBwOmFwcC1kMDlmOGMzZS1iMTdiLTQ1YTgtYTJiOS0xNmNjZGM0ZGQxOTYiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJhY2NvdW50LWFwcC1jbGllbnQiLCJzZXNzaW9uX3N0YXRlIjoiMTEyNDBkYzAtZTI1Zi00Mjc3LWFhZWQtMDNhNmQ1MDU5ZjRkIiwiYWNyIjoiMSIsInNjb3BlIjoib3BlbmlkIGVtYWlsIiwic2lkIjoiMTEyNDBkYzAtZTI1Zi00Mjc3LWFhZWQtMDNhNmQ1MDU5ZjRkIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpYW0iOnsiYWNjb3VudElkIjoiNzM5MDA0IiwibGVnYWN5VXNlcklkIjoiMTIwODI2NSIsImxlZ2FjeVVzZXJMb2dpbiI6IklBTS1BQ0NPVU5ULTczOTAwNCIsInJlYWxtTmFtZSI6ImFjY291bnQtYXBwIiwibG9jYWxlIjoiZnIiLCJ1c2VySWQiOiJhcHAtZDA5ZjhjM2UtYjE3Yi00NWE4LWEyYjktMTZjY2RjNGRkMTk2IiwidXNlcm5hbWUiOiJhcHAtZDA5ZjhjM2UtYjE3Yi00NWE4LWEyYjktMTZjY2RjNGRkMTk2In19.Rqm-wB_oYpFhU11bRfSGXYfcSOHizD82dbVrHPPOjJzo36nMFVkR1OCt252AkKm_VRn8kjWkfaCqfM54qG_ogNtqooOVdhiIhL2eAZ0bLjzxaytiP2KbNiXNUrpfl4RKlbTLCPsjXAvak5f5MkLdLJEJ6IYOAIFUCy4rLk4PUA6pTv4puvczqf9ifCuWXqQoM5Edjb3OTwbiSUkA6BpQ9ETA9t1EXX70AcWeMqsYEqAB7TqHMyFnH3M2CIAS7zfZEmvuAFWWmrAjPQB0ZyVjR18p-BEusfMLUKDMFy8Mneg_5_2E4fGGj0WffbgoIK6zBgrxTPoExxD4Skq9A84L6Q',
+        config: {
+          locale: 'fr',
+          parcelPointNetworks: [{ code: 'CHRP_NETWORK' }],
+          options: {
+            primaryColor: '#00FA9A',
+            autoSelectNearestParcelPoint: true,
+          },
+        },
+        onMapLoaded: () => {
+          console.log('Carte chargée');
+        }
+      });
+    };
+  </script>
+</body>
+</html>
