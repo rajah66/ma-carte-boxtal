@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Carte Boxtal</title>
+  <style>
+    #parcel-point-map {
+      width: 100%;
+      height: 500px; /* La hauteur est obligatoire */
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Carte Boxtal</h1>
+
+  <!-- Le conteneur indispensable -->
+  <div id="parcel-point-map"></div>
+
+  <!-- Librairie IIFE -->
+  <script src="https://maps.boxtal.com/app/v3/assets/dependencies/@boxtal/parcel-point-map/dist/index.global.js"></script>
+
+  <script>
+    window.onload = () => {
+      if (!BoxtalParcelPointMap || !BoxtalParcelPointMap.BoxtalParcelPointMap) {
+        console.error("Librairie Boxtal non chargée.");
+        return;
+      }
+
+      new BoxtalParcelPointMap.BoxtalParcelPointMap({
+        domToLoadMap: '#parcel-point-map',
+        accessToken: 'TON_TOKEN_ICI',
+        config: {
+          locale: 'fr',
+          parcelPointNetworks: [{ code: 'CHRP_NETWORK' }],
+          options: {
+            primaryColor: '#00FA9A',
+            autoSelectNearestParcelPoint: true,
+          },
+        },
+        onMapLoaded: () => {
+          console.log('Carte chargée');
+        }
+      });
+    };
+  </script>
+</body>
+</html>
